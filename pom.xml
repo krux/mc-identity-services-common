@@ -3,7 +3,7 @@
   <groupId>com.salesforce</groupId>
   <artifactId>mc-identity-services-common</artifactId>
   <packaging>jar</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <distributionManagement>
         <repository>
             <id>kruxmvn</id>
@@ -17,7 +17,8 @@
         <aws-helper.version>[1.6,2.0)</aws-helper.version>
     </properties>
   <build>
-    <sourceDirectory>src</sourceDirectory>
+    <sourceDirectory>src/main/java</sourceDirectory>
+    <testSourceDirectory>src/test/java</testSourceDirectory>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>

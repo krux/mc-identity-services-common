@@ -2,14 +2,14 @@ package com.salesforce.mc.identity.common.schema;
 
 import java.util.List;
 
-public class CBKFilePathRequest {
+public class CBKDataPathRequest {
 
 	private final String org;
 	private final String basePath;
 	private final List<String> bridgeKeys;
 	private final List<String> sourceTypes;
 
-	public CBKFilePathRequest(final String org, final String basePath, final List<String> bridgeKeys,
+	public CBKDataPathRequest(final String org, final String basePath, final List<String> bridgeKeys,
 			final List<String> sourceTypes) {
 		this.org = org;
 		this.basePath = basePath;
