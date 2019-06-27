@@ -2,6 +2,11 @@ package com.salesforce.mc.identity.common.schema;
 
 import java.util.List;
 
+/**
+ * Schema of the CBK Data path's request object
+ * @author Tej Vepa
+ *
+ */
 public class CBKDataPathRequest {
 
 	private final String orgUUID;
