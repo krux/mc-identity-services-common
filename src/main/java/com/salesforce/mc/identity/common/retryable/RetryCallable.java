@@ -13,6 +13,11 @@ public class RetryCallable<T> {
 		this.policy = policy;
 	}
 
+	/**
+	 *
+	 * @return
+	 * @throws RetryException
+	 */
 	public T call() throws RetryException {
 		int attempts = 0;
 		Optional<T> result = Optional.empty();
@@ -23,7 +28,8 @@ public class RetryCallable<T> {
 				if (!policy.getExceptionClasses().isEmpty() && !policy.getExceptionClasses().contains(e.getClass()))
 					throw new RetryException(e);
 				try {
-					Thread.sleep(policy.getBackOffTimeMillis());
+					int factor = policy.isExponentialBackOff() ? (int) Math.pow(2, attempts - 1) : 1;
+					Thread.sleep(policy.getBackOffTimeMillis() * factor);
 				} catch (InterruptedException e1) {
 					throw new RetryException(e1);
 				}
@@ -31,8 +37,7 @@ public class RetryCallable<T> {
 			}
 		}
 		if (!result.isPresent())
-			throw new RetryException(
-					new Exception("Attempted to call: " + this.callable.toString() + " multiple times but failed."));
+			throw new RetryException(new Exception("Multiple attempts in calling the callable resulted in exceptions."));
 		return result.get();
 
 	}

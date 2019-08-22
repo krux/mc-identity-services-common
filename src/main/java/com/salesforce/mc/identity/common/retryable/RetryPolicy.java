@@ -9,17 +9,24 @@ public class RetryPolicy {
 	private static final int DEFAULT_RETRIES = 5;
 
 	private final int backOffTimeMillis;
+	private final boolean isExponentialBackOff;
 	private final int retries;
 	private final Set<Class<? extends Exception>> exceptionClasses;
 
-	private RetryPolicy(final int backOffTimeMillis, final int retries, final Set<Class<? extends Exception>> exceptionClasses) {
+	private RetryPolicy(final int backOffTimeMillis, boolean isExponentialBackOff, final int retries,
+			final Set<Class<? extends Exception>> exceptionClasses) {
 		this.backOffTimeMillis = backOffTimeMillis;
+		this.isExponentialBackOff = isExponentialBackOff;
 		this.retries = retries;
 		this.exceptionClasses = exceptionClasses;
 	}
 
 	public int getBackOffTimeMillis() {
 		return backOffTimeMillis;
+	}
+
+	public boolean isExponentialBackOff() {
+		return isExponentialBackOff;
 	}
 
 	public int getRetries() {
@@ -33,6 +40,7 @@ public class RetryPolicy {
 	public static class RetryPolicyBuilder {
 		private int backOffTimeMillis;
 		private int retries;
+		private boolean isExponentialBackOff = true;
 		private final Set<Class<? extends Exception>> exceptionClasses = new HashSet<>();
 
 		public static RetryPolicyBuilder builder() {
@@ -54,6 +62,11 @@ public class RetryPolicy {
 			return this;
 		}
 
+		public RetryPolicyBuilder isExponentialBackOff(boolean isExponentialBackOff) {
+			this.isExponentialBackOff = isExponentialBackOff;
+			return this;
+		}
+
 		public RetryPolicy build() {
 			if (backOffTimeMillis == 0) {
 				backOffTimeMillis = DEFAULT_BACKOFF_TIME_MILLIS;
@@ -61,7 +74,7 @@ public class RetryPolicy {
 			if (retries == 0) {
 				retries = DEFAULT_RETRIES;
 			}
-			return new RetryPolicy(backOffTimeMillis, retries, exceptionClasses);
+			return new RetryPolicy(backOffTimeMillis, isExponentialBackOff, retries, exceptionClasses);
 		}
 	}
 
