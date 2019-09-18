@@ -11,7 +11,29 @@
             <url>https://kruxmvn.jfrog.io/kruxmvn/libs-releases-local</url>
         </repository>
     </distributionManagement>
-
+	<repositories>
+        <repository>
+            <id>central</id>
+            <name>libs-releases</name>
+            <url>https://kruxmvn.jfrog.io/kruxmvn/libs-releases</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>snapshots</id>
+            <name>libs-snapshots</name>
+            <url>https://kruxmvn.jfrog.io/kruxmvn/libs-snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>kruxmvn</id>
+            <name>kruxmvn-releases</name>
+            <url>https://kruxmvn.jfrog.io/kruxmvn/libs-releases-local</url>
+        </repository>
+    </repositories>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aws-helper.version>[1.6,2.0)</aws-helper.version>
