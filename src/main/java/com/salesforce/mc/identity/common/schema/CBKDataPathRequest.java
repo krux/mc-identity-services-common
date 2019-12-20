@@ -13,15 +13,15 @@ public class CBKDataPathRequest {
 	private final String basePath;
 	private final List<String> bridgeKeys;
 	private final List<String> sourceTypes;
-	private final String dbMode;
+	private final String dbConfigParam;
 
 	public CBKDataPathRequest(final String orgUUID, final String basePath, final List<String> bridgeKeys,
-			final List<String> sourceTypes, final String dbMode) {
+			final List<String> sourceTypes, final String dbConfigParam) {
 		this.orgUUID = orgUUID;
 		this.basePath = basePath;
 		this.bridgeKeys = bridgeKeys;
 		this.sourceTypes = sourceTypes;
-		this.dbMode = dbMode;
+		this.dbConfigParam = dbConfigParam;
 	}
 
 	public String getOrgUUID() {
@@ -40,7 +40,7 @@ public class CBKDataPathRequest {
 		return sourceTypes;
 	}
 
-	public String getDBMode() {
-		return dbMode;
+	public String getDBConfigParam() {
+		return dbConfigParam;
 	}
 }
